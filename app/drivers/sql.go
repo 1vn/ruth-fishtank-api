@@ -3,8 +3,8 @@ package drivers
 import (
 	"database/sql"
 	"fmt"
+	"github.com/ivanzhangio/ruth-fishtank-api/conf"
 	_ "github.com/lib/pq"
-	"github.com/ranomics/ranomics-web/conf"
 	"github.com/revel/revel"
 )
 

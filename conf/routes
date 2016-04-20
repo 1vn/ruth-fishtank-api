@@ -6,7 +6,8 @@ module:testrunner
 
 GET     /                                       App.Index
 GET 	/hello 									App.Hello
-GET 	/recordstate   							App.RecordState
+GET 	/api/v1/updatestate   					App.UpdateState
+GET 	/api/v1/getstate   						App.GetState
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"github.com/ivanzhangio/ruth-fishtank-api/app/models/state"
 	"github.com/ivanzhangio/ruth-fishtank-api/conf"
 	"github.com/revel/revel"
 )
@@ -30,10 +31,28 @@ func (c *App) Hello() revel.Result {
 	return c.RenderText(fmt.Sprintf("%d", 1))
 }
 
-func (c *App) RecordState() revel.Result {
-	return c.RenderText(fmt.Sprintf("%d,%d,%t,%t", 10, 10, true, false))
+func (c *App) UpdateState(temp_angle, food_meter, state_time int64,
+	need_food, request, bool) revel.Result {
+	return nil
 }
 
-func (c *App) GetActions() revel.Result {
-	return c.RenderText(fmt.Sprintf("%s", 1))
+func (c *App) GetState() revel.Result {
+	state, err := state.GetLatest()
+	if err != nil {
+		c.Response.Status = 500
+		mp := map[string]interface{}{
+			"message": "server error, bro",
+		}
+		return c.RenderJson(mp)
+	}
+
+	if state == nil {
+		c.Response.Status = 404
+		mp := map[string]interface{}{
+			"message": "no states",
+		}
+		return c.RenderJson(mp)
+	}
+
+	return c.RenderJson(state)
 }

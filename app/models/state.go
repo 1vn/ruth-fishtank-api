@@ -5,20 +5,20 @@ import (
 )
 
 type State struct {
-	StateId   int64
-	TempAngle int
-	StateTime time.Time
-	FoodMeter int
-	NeedFood  bool
-	Request   bool
+	StateId   int64     `json:"state_id"`
+	TempAngle int       `json:"temp_angle"`
+	StateTime time.Time `json:"state_time"`
+	FoodMeter int       `json:"food_meter"`
+	NeedFood  bool      `json"need_food"`
+	Request   bool      `json:"request"`
 }
 
 type StateParams struct {
-	TempAngle sql.NullInt64
-	StateTime time.Time
-	FoodMeter sql.NullInt64
-	NeedFood  sql.NullBool
-	Request   sql.NullBool
+	TempAngle NullInt64 `json:"temp_angle"`
+	StateTime time.Time `json:"state_time"`
+	FoodMeter NullInt64 `json:"food_meter"`
+	NeedFood  NullBool  `json:"need_food"`
+	Request   NullBool  `json:"request"`
 }
 
 func (s *StateParams) GetTempAngle() *int64 {

@@ -43,10 +43,11 @@ func ScanRows(rows *sql.Rows) ([]*models.State, error) {
 
 func GetLatest() (*models.State, error) {
 	rows, err := drivers.DB.Query(`select * from states order by statetime desc limit 1`)
-	defer rows.Close()
 	if err != nil {
 		return nil, err
 	}
+
+	defer rows.Close()
 
 	states, err := ScanRows(rows)
 	if err != nil {

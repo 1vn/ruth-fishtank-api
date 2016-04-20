@@ -32,7 +32,7 @@ func (c *App) Hello() revel.Result {
 }
 
 func (c *App) UpdateState(temp_angle, food_meter, state_time int64,
-	need_food, request, bool) revel.Result {
+	need_food, request bool) revel.Result {
 	return nil
 }
 

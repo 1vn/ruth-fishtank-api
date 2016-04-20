@@ -19,6 +19,5 @@ func InitDB() {
 		revel.INFO.Println("DB Error", err)
 	}
 	revel.INFO.Println("DB Connected")
-	revel.INFO.Println("Loading genes from DB...")
 
 }

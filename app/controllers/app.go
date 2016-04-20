@@ -37,7 +37,7 @@ func (c *App) UpdateState(temp_angle, food_meter, state_time int64,
 }
 
 func (c *App) GetState() revel.Result {
-	state, err := state.GetLatest()
+	s, err := state.GetLatest()
 	if err != nil {
 		c.Response.Status = 500
 		mp := map[string]interface{}{
@@ -46,7 +46,7 @@ func (c *App) GetState() revel.Result {
 		return c.RenderJson(mp)
 	}
 
-	if state == nil {
+	if s == nil {
 		c.Response.Status = 404
 		mp := map[string]interface{}{
 			"message": "no states",
@@ -54,5 +54,5 @@ func (c *App) GetState() revel.Result {
 		return c.RenderJson(mp)
 	}
 
-	return c.RenderJson(state)
+	return c.RenderJson(s)
 }

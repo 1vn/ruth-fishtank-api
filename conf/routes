@@ -6,7 +6,7 @@ module:testrunner
 
 GET     /                                       App.Index
 GET 	/hello 									App.Hello
-GET 	/api/v1/updatestate   					App.UpdateState
+POST 	/api/v1/updatestate   					App.UpdateState
 GET 	/api/v1/getstate   						App.GetState
 
 # Ignore favicon requests

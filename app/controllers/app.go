@@ -2,9 +2,11 @@ package controllers
 
 import (
 	"fmt"
+	"github.com/ivanzhangio/ruth-fishtank-api/app/models"
 	"github.com/ivanzhangio/ruth-fishtank-api/app/models/state"
 	"github.com/ivanzhangio/ruth-fishtank-api/conf"
 	"github.com/revel/revel"
+	"time"
 )
 
 type App struct {
@@ -34,7 +36,27 @@ func (c *App) Hello() revel.Result {
 func (c *App) UpdateState(temp_angle, food_meter, state_time int64,
 	need_food, request bool) revel.Result {
 
-	return nil
+	tm := time.Unix(state_time, 0)
+
+	err := state.Insert(&models.StateParams{
+		TempAngle: models.NullInt64{Int64: temp_angle, Valid: true},
+		FoodMeter: models.NullInt64{Int64: food_meter, Valid: true},
+		StateTime: tm,
+		NeedFood:  models.NullBool{Bool: need_food, Valid: true},
+		Request:   models.NullBool{Bool: request, Valid: true},
+	})
+
+	if err != nil {
+		mp := map[string]interface{}{
+			"message": fmt.Sprintf("insert error, bro: %s", err.Error()),
+		}
+		return c.RenderJson(mp)
+	}
+
+	mp := map[string]interface{}{
+		"message": fmt.Sprintf("insert success, bro"),
+	}
+	return c.RenderJson(mp)
 }
 
 func (c *App) GetState() revel.Result {

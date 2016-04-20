@@ -50,6 +50,7 @@ func GetLatest() (*models.State, error) {
 
 	states, err := ScanRows(rows)
 	if err != nil {
+		fmt.Println(err)
 		return nil, err
 	}
 	var s *models.State

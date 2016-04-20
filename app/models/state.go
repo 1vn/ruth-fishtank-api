@@ -9,7 +9,7 @@ type State struct {
 	TempAngle int       `json:"temp_angle"`
 	StateTime time.Time `json:"state_time"`
 	FoodMeter int       `json:"food_meter"`
-	NeedFood  bool      `json"need_food"`
+	NeedFood  bool      `json:"need_food"`
 	Request   bool      `json:"request"`
 }
 

@@ -33,6 +33,7 @@ func (c *App) Hello() revel.Result {
 
 func (c *App) UpdateState(temp_angle, food_meter, state_time int64,
 	need_food, request bool) revel.Result {
+
 	return nil
 }
 
@@ -40,8 +41,9 @@ func (c *App) GetState() revel.Result {
 	s, err := state.GetLatest()
 	if err != nil {
 		c.Response.Status = 500
+
 		mp := map[string]interface{}{
-			"message": "server error, bro",
+			"message": fmt.Sprintf("server error, bro: %s", err.Error()),
 		}
 		return c.RenderJson(mp)
 	}

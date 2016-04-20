@@ -11,7 +11,7 @@ import (
 var DB *sql.DB
 
 func InitDB() {
-	connstring := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", conf.DbUser(), conf.DbPass(), conf.DbName())
+	connstring := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", conf.DB_USER, conf.DB_PASS, conf.DB_NAME)
 
 	var err error
 	DB, err = sql.Open("postgres", connstring)

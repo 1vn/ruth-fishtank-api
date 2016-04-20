@@ -3,3 +3,5 @@ tmp/
 routes/
 app/fishtank.sql
 conf/secretconfigs.go
+conf/app.conf
+*.conf
